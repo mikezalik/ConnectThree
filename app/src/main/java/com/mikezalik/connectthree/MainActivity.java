@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
             activePlayer = 1;
         } else {
-            counter.setImageResource(R.drawable.yellow);
+            counter.setImageResource(R.drawable.red);
 
             activePlayer = 0;
         }
