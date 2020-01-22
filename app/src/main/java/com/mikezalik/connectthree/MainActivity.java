@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,7 +40,19 @@ public class MainActivity extends AppCompatActivity {
 
         counter.animate().translationYBy(1500).rotation(3600).setDuration(300);
 
-        
+        for (int[] winningPosition : winningPositions) {
+            if (gameState[winningPosition[0]] == gameState[winningPosition[1]] && gameState[winningPosition[1]] == gameState[winningPosition[2]] && gameState[winningPosition[0]] != 2) {
+
+                String winner;
+                if (activePlayer == 1)  {
+                    winner = "Yellow";
+                } else {
+                    winner = "Red";
+                }
+
+                Toast.makeText(this, winner + " is the winner!", Toast.LENGTH_LONG).show();
+            }
+        }
     }
 
     @Override
