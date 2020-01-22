@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -17,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
 
     int activePlayer = 0;
 
+    boolean gameActive = true;
+
     public void dropIn (View view)  {
         ImageView counter = (ImageView) view;
 
@@ -24,35 +28,57 @@ public class MainActivity extends AppCompatActivity {
 
         int tappedCounter = Integer.parseInt(counter.getTag().toString());
 
-        gameState[tappedCounter] = activePlayer;
+        if (gameState[tappedCounter] == 2 && gameActive) {
 
-        counter.setTranslationY(-1500);
+            gameState[tappedCounter] = activePlayer;
 
-        if (activePlayer == 0) {
-            counter.setImageResource(R.drawable.yellow);
+            counter.setTranslationY(-1500);
 
-            activePlayer = 1;
-        } else {
-            counter.setImageResource(R.drawable.red);
+            if (activePlayer == 0) {
+                counter.setImageResource(R.drawable.yellow);
 
-            activePlayer = 0;
-        }
+                activePlayer = 1;
+            } else {
+                counter.setImageResource(R.drawable.red);
 
-        counter.animate().translationYBy(1500).rotation(3600).setDuration(300);
+                activePlayer = 0;
+            }
 
-        for (int[] winningPosition : winningPositions) {
-            if (gameState[winningPosition[0]] == gameState[winningPosition[1]] && gameState[winningPosition[1]] == gameState[winningPosition[2]] && gameState[winningPosition[0]] != 2) {
+            counter.animate().translationYBy(1500).rotation(3600).setDuration(300);
 
-                String winner;
-                if (activePlayer == 1)  {
-                    winner = "Yellow";
-                } else {
-                    winner = "Red";
+            for (int[] winningPosition : winningPositions) {
+                if (gameState[winningPosition[0]] == gameState[winningPosition[1]] && gameState[winningPosition[1]] == gameState[winningPosition[2]] && gameState[winningPosition[0]] != 2) {
+
+                    gameActive = false;
+
+                    String winner;
+                    if (activePlayer == 1) {
+                        winner = "Yellow";
+                    } else {
+                        winner = "Red";
+                    }
+
+                    Toast.makeText(this, winner + " is the winner!", Toast.LENGTH_LONG).show();
+
+                    Button playAgainButton = findViewById(R.id.playAgainButton);
+                    TextView winnerTextView = findViewById(R.id.winnerTextView);
+
+                    winnerTextView.setText(winner + " has won!");
+
+                    playAgainButton.setVisibility(View.VISIBLE);
+                    winnerTextView.setVisibility(View.VISIBLE);
                 }
-
-                Toast.makeText(this, winner + " is the winner!", Toast.LENGTH_LONG).show();
             }
         }
+    }
+
+    public void playAgain() {
+        Button playAgainButton = findViewById(R.id.playAgainButton);
+        TextView winnerTextView = findViewById(R.id.winnerTextView);
+
+        playAgainButton.setVisibility(View.INVISIBLE);
+        winnerTextView.setVisibility(View.INVISIBLE);
+
     }
 
     @Override
