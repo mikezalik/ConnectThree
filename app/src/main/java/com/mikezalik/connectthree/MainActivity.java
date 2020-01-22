@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.GridLayout;
+import androidx.gridlayout.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,18 +30,15 @@ public class MainActivity extends AppCompatActivity {
         int tappedCounter = Integer.parseInt(counter.getTag().toString());
 
         if (gameState[tappedCounter] == 2 && gameActive) {
-
             gameState[tappedCounter] = activePlayer;
-
             counter.setTranslationY(-1500);
 
             if (activePlayer == 0) {
                 counter.setImageResource(R.drawable.yellow);
-
                 activePlayer = 1;
+
             } else {
                 counter.setImageResource(R.drawable.red);
-
                 activePlayer = 0;
             }
 
@@ -49,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
 
             for (int[] winningPosition : winningPositions) {
                 if (gameState[winningPosition[0]] == gameState[winningPosition[1]] && gameState[winningPosition[1]] == gameState[winningPosition[2]] && gameState[winningPosition[0]] != 2) {
-
                     gameActive = false;
 
                     String winner;
@@ -73,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void playAgain() {
+    public void playAgain(View view) {
         Button playAgainButton = findViewById(R.id.playAgainButton);
         TextView winnerTextView = findViewById(R.id.winnerTextView);
         GridLayout gridLayout = findViewById(R.id.gridLayout);
@@ -86,9 +82,12 @@ public class MainActivity extends AppCompatActivity {
             counter.setImageDrawable(null);
         }
 
-        int[] gameState = {2, 2, 2, 2, 2, 2, 2, 2, 2};
-        int activePlayer = 0;
-        boolean gameActive = true;
+        for(int i=0; i<gameState.length; i++) {
+            gameState[i] = 2;
+        }
+
+        activePlayer = 0;
+        gameActive = true;
     }
 
     @Override
