@@ -7,8 +7,8 @@
     tools:context=".MainActivity">
 
     <androidx.gridlayout.widget.GridLayout
-        android:layout_width="327dp"
-        android:layout_height="324dp"
+        android:layout_width="330dp"
+        android:layout_height="330dp"
         android:background="@drawable/board"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -17,7 +17,7 @@
         app:layout_constraintVertical_bias="0.498">
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/imageView"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_margin="15dp"
@@ -30,12 +30,12 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_margin="15dp"
-            app:layout_column="0"
-            app:layout_row="1"
+            app:layout_column="1"
+            app:layout_row="0"
             app:srcCompat="@drawable/red" />
 
         <ImageView
-            android:id="@+id/imageView4"
+            android:id="@+id/imageView3"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_margin="15dp"
@@ -44,12 +44,12 @@
             app:srcCompat="@drawable/red" />
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/imageView4"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_margin="15dp"
-            app:layout_column="1"
-            app:layout_row="0"
+            app:layout_column="0"
+            app:layout_row="1"
             app:srcCompat="@drawable/red" />
 
         <ImageView
@@ -97,4 +97,5 @@
             app:layout_row="2"
             app:srcCompat="@drawable/red" />
     </androidx.gridlayout.widget.GridLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
