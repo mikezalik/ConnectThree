@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -75,10 +76,19 @@ public class MainActivity extends AppCompatActivity {
     public void playAgain() {
         Button playAgainButton = findViewById(R.id.playAgainButton);
         TextView winnerTextView = findViewById(R.id.winnerTextView);
+        GridLayout gridLayout = findViewById(R.id.gridLayout);
 
         playAgainButton.setVisibility(View.INVISIBLE);
         winnerTextView.setVisibility(View.INVISIBLE);
 
+        for(int i=0; i<gridLayout.getChildCount(); i++) {
+            ImageView counter = (ImageView) gridLayout.getChildAt(i);
+            counter.setImageDrawable(null);
+        }
+
+        int[] gameState = {2, 2, 2, 2, 2, 2, 2, 2, 2};
+        int activePlayer = 0;
+        boolean gameActive = true;
     }
 
     @Override
