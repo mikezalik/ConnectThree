@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Connect Three</string>
+    <string name="New_Game">Start new game!</string>
+    <string name="textview">TextView</string>
 </resources>
